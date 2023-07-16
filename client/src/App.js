@@ -1,6 +1,6 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import {useTable, useSortBy} from "react-table";
+import { useTable, useSortBy } from "react-table";
 import "./App.css";
 
 const App = () => {

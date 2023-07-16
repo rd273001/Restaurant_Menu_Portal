@@ -2,14 +2,16 @@ const express = require( "express" );
 const cors = require( "cors" );
 const mongoose = require( "mongoose" );
 const app = express();
-const PORT = process.env.PORT || 3001;
+require( "dotenv" ).config();
 
 // Configure Express to parse JSON bodies
 app.use( express.json() );
 app.use( cors() );
 
+const PORT = process.env.PORT || 3001;
+
 // Connection to the MongoDB database named restaurant
-mongoose.connect( "mongodb+srv://rd273001:mongodb123@cluster0.sbdsigv.mongodb.net/restaurant?retryWrites=true&w=majority", {
+mongoose.connect( process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 } ).then( () => {
