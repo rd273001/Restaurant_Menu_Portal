@@ -35,7 +35,7 @@ const menuItemSchema = new mongoose.Schema( {
 const MenuItem = mongoose.model("menuitems", menuItemSchema);
 
 // API endpoint to fetch all menu items
-app.get( "/menu", async ( req, res ) => {
+app.get( "https://mern-finvestfx-server.vercel.app/menu", async ( req, res ) => {
     try {
         const menuItems = await MenuItem.find();
         res.json( menuItems );
