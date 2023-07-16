@@ -11,7 +11,7 @@ const App = () => {
     // Fetch menu items from the backend API when the DOM mounts
     const fetchMenuItems = async () => {
       try {
-        const response = await axios.get( "/restaurant/menu" );
+        const response = await axios.get( "/menu" );
         setMenuItems( response.data );
         console.log( "Response Data:", response.data );
       } catch ( error ) {
@@ -23,7 +23,7 @@ const App = () => {
 
   const handlePriceChange = async ( id, price ) => {
     try {
-      await axios.put( `/restaurant/menu/${ id }`, { price } );
+      await axios.put( `/menu/${ id }`, { price } );
       console.log( `Price updated for item ${ id }` );
       setEditingItemId( null );
     } catch ( error ) {

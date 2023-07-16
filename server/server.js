@@ -35,7 +35,7 @@ const menuItemSchema = new mongoose.Schema( {
 const MenuItem = mongoose.model("menuitems", menuItemSchema);
 
 // API endpoint to fetch all menu items
-app.get( "/restaurant/menu", async ( req, res ) => {
+app.get( "/menu", async ( req, res ) => {
     try {
         const menuItems = await MenuItem.find();
         res.json( menuItems );
@@ -45,7 +45,7 @@ app.get( "/restaurant/menu", async ( req, res ) => {
 } );
 
 // API endpoint to update a menu item's price
-app.put( "/restaurant/menu/:id", async ( req, res ) => {
+app.put( "/menu/:id", async ( req, res ) => {
     const { id } = req.params;
     const { price } = req.body;
 
