@@ -2,13 +2,15 @@ const express = require( "express" );
 const cors = require( "cors" );
 const mongoose = require( "mongoose" );
 const app = express();
+const path = require("path");
 require( "dotenv" ).config();
 
 // Configure Express to parse JSON bodies
 app.use( express.json() );
 app.use( cors() );
+app.use( express.static( path.join( __dirname, "build" ) ) );
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
 // Connection to the MongoDB database named restaurant
 mongoose.connect( process.env.MONGODB_URL, {
@@ -33,6 +35,10 @@ const menuItemSchema = new mongoose.Schema( {
 
 // Create the model for the menu item
 const MenuItem = mongoose.model("menuitems", menuItemSchema);
+
+app.get( "/", function ( req, res ) {
+    res.sendFile( path.join( __dirname, "build", "index.html" ) );
+} );
 
 // API endpoint to fetch all menu items
 app.get( "/menu", async ( req, res ) => {

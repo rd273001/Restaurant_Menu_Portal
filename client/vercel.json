@@ -15,8 +15,5 @@
 			"src": "/(.*)",
 			"dest": "build/$1"
 		}
-	],
-	"env": {
-		"REACT_APP_CLIENT_BASE_URL": "@vercel/secret"
-	}
+	]
 }
