@@ -11,7 +11,7 @@ const App = () => {
     // Fetch menu items from the backend API when the DOM mounts
     const fetchMenuItems = async () => {
       try {
-        const response = await axios.get( "/menu" );
+        const response = await axios.get( "/api/menu" );
         setMenuItems( response.data );
         console.log( "Response Data:", response.data );
       } catch ( error ) {
@@ -22,9 +22,28 @@ const App = () => {
   }, [editingItemId] );
 
   const handlePriceChange = async ( id, price ) => {
+    // Check if the price parameter is a number.
+    const numberPrice = Number( price );
+    // If the price parameter is not a number, show an alert and return.
+    if ( !numberPrice ) {
+      // `alert` is a built-in JavaScript function that displays an alert box.
+      alert( "Price must be a number" );
+      return;
+    }
+    // This function gets the price of a menu item by its id.
+    const getPriceById = async ( id ) => {
+      const response = await axios.get( `/api/menu/${ id }` );
+      return response.data.price;
+    };
+    // Check if the price is the same as before.
+    const oldPrice = await getPriceById( id );
+    if ( price === oldPrice ) {
+      alert( "Price is the same as before." );
+      return;
+    }
     try {
-      await axios.put( `/menu/${ id }`, { price } );
-      console.log( `Price updated for item ${ id }` );
+      await axios.put( `/api/menu/${ id }`, { price } );
+      alert( `Price updated for item with ID => ${ id }` );
       setEditingItemId( null );
     } catch ( error ) {
       console.error( `Error updating price for item ${ id }:`, error );
