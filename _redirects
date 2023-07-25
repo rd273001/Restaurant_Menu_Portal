@@ -1,7 +1,0 @@
-# Redirect all requests to the index.html file
-/index.html   /
-
-# Redirect /menu to /api/menu
-/api/menu   /api/menu
-
-/api/menu/ id=:id   /api/menu/:id

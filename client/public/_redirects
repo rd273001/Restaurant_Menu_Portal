@@ -1,0 +1,7 @@
+# Redirect all requests to the index.html file
+/index.html https://mern-finvestfx-frontend.netlify.app    200
+
+# Redirect /api/menu to /api/menu
+https://mern-finvestfx-frontend.netlify.app /api/menu
+
+/api/menu/  id=:id  /api/menu/:id
